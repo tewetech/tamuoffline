@@ -28,17 +28,17 @@
             --accent-3: #08978B; /* Tab Aktif/Edit/Salin */
             --border-color: rgba(0, 0, 0, 0.1); 
             
-            /* Dimensi - Diperkecil 1/3 (sekitar 66%) */
-            --glass-br: 8px; /* Dari 10px */
-            --font-size-base: 0.75rem; /* Dari 0.9rem */
-            --padding-base: 0.6em; /* Dari 0.8em */ 
+            /* Dimensi - Disesuaikan agar lebih ringkas */
+            --glass-br: 8px; 
+            --font-size-base: 0.75rem; 
+            --padding-base: 0.6em; 
 
             /* Shadow & Warna Aksi */
             --shadow-light: rgba(0, 0, 0, 0.1);
-            --color-delete: var(--accent-2); /* Warna Merah/Oranye untuk Hapus */
+            --color-delete: var(--accent-2); 
             --color-save: var(--accent-1); 
             --color-copy: var(--accent-3); 
-            --color-edit: var(--accent-3); 
+            --color-edit: var(--accent-3); /* Menggunakan warna aksen 3 untuk Edit */
         }
 
         /* --- Gaya Umum untuk body --- */
@@ -47,43 +47,42 @@
             background-color: var(--bg-primary);
             color: var(--text-main);
             min-height: 100vh;
-            padding: 1em; /* Dari 1.5em */
+            padding: 1em; 
             font-size: var(--font-size-base); 
         }
         
         /* --- Kontainer utama (Card-like container) --- */
         .glass-card {
             background: var(--bg-card);
-            backdrop-filter: blur(6px) saturate(180%); /* Blur sedikit dikurangi */
+            backdrop-filter: blur(6px) saturate(180%);
             -webkit-backdrop-filter: blur(6px) saturate(180%);
             border: 1px solid var(--border-color);
-            box-shadow: 0 3px 9px var(--shadow-light); /* Shadow dikurangi */
-            padding: 1em; /* Dari 1.25em */
+            box-shadow: 0 3px 9px var(--shadow-light); 
+            padding: 1em; 
             border-radius: var(--glass-br);
         }
 
-        /* --- Kontainer Utama untuk batasan lebar (max-w-4xl dikurangi) --- */
+        /* --- Kontainer Utama untuk batasan lebar --- */
         .main-container {
-            max-width: 540px; /* Lebar dikurangi dari max-w-4xl (~896px) */
+            max-width: 540px; 
             margin-left: auto;
             margin-right: auto;
-            space-y: 0.8em; /* Jarak antar elemen dikurangi */
+            space-y: 0.8em; 
         }
         
         /* --- Header dan Judul --- */
         header h1 {
-            font-size: 1.4rem; /* Dari 1.8rem */
+            font-size: 1.4rem; 
             font-weight: 700;
             color: var(--accent-1); 
         }
-        /* REVISI CSS: Gaya khusus untuk teks "Offline" di judul h1 */
         header h1 .text-delete-color {
-            color: var(--color-delete); /* Menggunakan warna tombol hapus */
+            color: var(--color-delete); 
         }
         header p {
             color: var(--text-subtle);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem; /* Dari 0.75rem */
+            font-size: 0.65rem; 
         }
         
         /* --- Tombol Aksi Utama (Save) --- */
@@ -91,13 +90,12 @@
             background-color: var(--color-save); 
             color: white;
             font-weight: 600;
-            border-radius: 5px; /* Sedikit dikurangi */
-            padding: 0.5rem 1rem; /* Dari 0.6rem 1.25rem */
-            font-size: 0.8rem; /* Dari 0.9rem */
-            box-shadow: 0 1px 4px rgba(8, 151, 139, 0.3); /* Shadow dikurangi */
+            border-radius: 5px; 
+            padding: 0.5rem 1rem; 
+            font-size: 0.8rem; 
+            box-shadow: 0 1px 4px rgba(8, 151, 139, 0.3); 
         }
         
-        /* Hover untuk Simpan (Tidak Berubah) */
         .btn-primary:hover:not(:disabled) {
             background-color: #046c63; 
             transform: translateY(-1px);
@@ -117,14 +115,14 @@
             transform: translateY(-1px);
         }
 
-        /* --- Tombol Aksi Tabel (Hapus) --- */
+        /* --- Tombol Aksi Tabel (Edit/Hapus) --- */
         .btn-table-action {
             /* Membuat tombol lebih kecil dan merata */
-            font-size: 0.7rem; /* Dari 0.8rem */
-            padding: 0.3rem; /* Dari 0.4rem */
-            width: 1.6rem; /* Dari 1.8rem */
-            height: 1.6rem; /* Dari 1.8rem */
-            border-radius: 3px; /* Sedikit dikurangi */
+            font-size: 0.7rem; 
+            padding: 0.3rem; 
+            width: 1.6rem; 
+            height: 1.6rem; 
+            border-radius: 3px; 
             color: white; 
             display: inline-flex; 
             align-items: center;
@@ -132,43 +130,52 @@
             transition: background-color 0.2s, transform 0.2s;
         }
 
+        /* Gaya Khusus untuk tombol Edit */
+        .btn-edit {
+            background-color: var(--color-edit);
+        }
+        .btn-edit:hover:not(:disabled) {
+            background-color: #046c63; /* Warna hover sama dengan Save */
+        }
+        /* Gaya Khusus untuk tombol Hapus */
+        .btn-remove {
+            background-color: var(--color-delete); 
+        }
+        .btn-remove:hover:not(:disabled) {
+            background-color: #e04a1f; 
+        }
+
         /* --- Input Field --- */
         input[type="text"] {
             border: 1px solid var(--border-color);
-            border-radius: 5px; /* Sedikit dikurangi */
-            padding: 0.5rem; /* Dari 0.6rem */
-            font-size: 0.8rem; /* Dari 0.9rem */
+            border-radius: 5px; 
+            padding: 0.5rem; 
+            font-size: 0.8rem; 
         }
         
         /* --- Tabel Styling --- */
         .data-table thead th {
-            font-size: 0.7rem; /* Dari 0.8rem */
-            padding: 0.5rem 0.6rem; /* Dari 0.6rem 0.8rem */
+            font-size: 0.7rem; 
+            padding: 0.5rem 0.6rem; 
         }
         .data-table tbody td {
-            padding: 0.5rem 0.6rem; /* Dari 0.6rem 0.8rem */
-            font-size: 0.75rem; /* Dari 0.875rem */
+            padding: 0.5rem 0.6rem; 
+            font-size: 0.75rem; 
             vertical-align: middle; 
         }
 
-        /* --- REVISI: Pastikan header tabel memiliki background putih solid agar tidak transparan saat scroll --- */
+        /* --- Header tabel harus sticky dengan background solid --- */
         .data-table thead th {
-            /* Properti yang sudah ada: */
-            font-size: 0.7rem;
-            padding: 0.5rem 0.6rem;
-            position: sticky; /* Pastikan tetap sticky */
-            top: 0; /* Pastikan menempel di atas */
-            z-index: 10; /* Pastikan di atas konten tabel */
-            
-            /* REVISI: Tambahkan background putih solid */
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
             background-color: white; 
-            /* Tambahkan box shadow tipis agar terlihat terpisah dari data */
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
         }
 
         /* --- Gaya Scrollable Data --- */
         .scrollable-data {
-            max-height: 350px; /* Dikurangi dari 350px */
+            max-height: 350px; 
             overflow-y: auto; 
             border: 1px solid var(--border-color);
             border-radius: var(--glass-br);
@@ -176,12 +183,12 @@
 
         /* --- Gaya Toggle Switch Status Undangan --- */
         .toggle-switch {
-            width: 65px; /* Dari 85px */
-            height: 22px; /* Dari 28px */
+            width: 65px; 
+            height: 22px; 
             position: relative;
             display: inline-block;
         }
-        /* Input disembunyikan (Tidak Berubah) */
+        /* Input disembunyikan */
         .toggle-switch input {
             opacity: 0;
             width: 0;
@@ -196,29 +203,29 @@
             bottom: 0;
             background-color: #ccc;
             transition: .4s;
-            border-radius: 22px; /* Dari 30px */
+            border-radius: 22px; 
         }
         .slider:before {
             position: absolute;
             content: "BELUM";
-            height: 16px; /* Dari 20px */
-            width: 30px; /* Dari 38px */
-            left: 3px; /* Dari 4px */
-            bottom: 3px; /* Dari 4px */
+            height: 16px; 
+            width: 30px; 
+            left: 3px; 
+            bottom: 3px; 
             background-color: #ff5733; 
             transition: .4s;
-            border-radius: 16px; /* Dari 20px */
-            line-height: 16px; /* Dari 20px */
+            border-radius: 16px; 
+            line-height: 16px; 
             text-align: center;
             color: white;
             font-weight: 600;
-            font-size: 7px; /* Dari 8px */
+            font-size: 7px; 
         }
         input:checked + .slider {
             background-color: #08978b; 
         }
         input:checked + .slider:before {
-            transform: translateX(29px); /* Disesuaikan dengan lebar baru: 65 - 3 - 3 - 30 = 29. Digunakan 31px. */
+            transform: translateX(39px); /* Disesuaikan dengan lebar toggle switch */
             background-color: #046c63; 
             content: "SUDAH";
         }
@@ -236,10 +243,10 @@
         }
         .modal-content {
             background-color: white;
-            border-radius: 10px; /* Dari 12px */
+            border-radius: 10px; 
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            padding: 1.2em; /* Dari 1.5em */
-            transform: translateY(-15px); /* Dari -20px */
+            padding: 1.2em; 
+            transform: translateY(-15px); 
             transition: transform 0.3s ease-out;
         }
         .modal-open .modal-content {
@@ -248,20 +255,20 @@
 
         /* --- Toast Styling (Notifikasi) --- */
         #toastModal {
-            bottom: 15px; /* Dari 20px */
+            bottom: 15px; 
             left: 50%;
             transform: translateX(-50%);
             z-index: 100;
             pointer-events: none;
         }
         .toast-content {
-            padding: 0.5rem 1rem; /* Dari 0.6rem 1.2rem */
-            border-radius: 7px; /* Dari 8px */
-            font-size: 0.8rem; /* Dari 0.9rem */
+            padding: 0.5rem 1rem; 
+            border-radius: 7px; 
+            font-size: 0.8rem; 
             color: white;
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;
             opacity: 0;
-            transform: translateY(15px); /* Dari 20px */
+            transform: translateY(15px); 
         }
         .toast-show {
             opacity: 1;
@@ -271,13 +278,13 @@
         .toast-error { background-color: var(--accent-2); border-color: #E55A29; }
         .toast-info { background-color: var(--accent-3); border-color: #1e40ef; }
 
-        /* --- Gaya Tab Navigasi - Warna hover sudah disesuaikan --- */
+        /* --- Gaya Tab Navigasi --- */
         .tab-button {
-            padding: 0.4rem 0.8rem; /* Dari 0.5rem 1rem */
+            padding: 0.4rem 0.8rem; 
             font-weight: 600;
-            border-radius: 5px; /* Dari 6px */
+            border-radius: 5px; 
             color: var(--text-subtle);
-            font-size: 0.8rem; /* Dari 0.9rem */
+            font-size: 0.8rem; 
             transition: all 0.2s ease;
         }
         .tab-button:hover { 
@@ -287,9 +294,9 @@
         .tab-active {
             background-color: var(--accent-3); 
             color: white;
-            box-shadow: 0 1px 4px rgba(37, 99, 235, 0.3); /* Shadow dikurangi */
+            box-shadow: 0 1px 4px rgba(37, 99, 235, 0.3); 
         }
-        /* Aturan untuk tab aktif agar tidak berubah warna saat di hover (Tidak Berubah) */
+        /* Aturan untuk tab aktif agar tidak berubah warna saat di hover */
         .tab-active:hover {
             background-color: var(--accent-3); 
             color: white;
@@ -302,7 +309,7 @@
 
     <div class="main-container mx-auto space-y-3">
         <header class="text-center pt-1 pb-1">
-            <h1 class="font-extrabold mb-0.5">Tamu Undangan <span class="text-delete-color">Offline</span></h1>
+            <h1 class="font-extrabold mb-0.5">Daftar Tamu <span class="text-delete-color">Offline</span></h1>
             <p class="text-xs text-gray-600">List Tamu Undangan Kita • Chusnul & Tri • 2025 </p>
         </header>
 
@@ -448,7 +455,7 @@
         // Variabel global untuk menentukan sheet/kategori yang aktif
         let currentSheet = SHEET_CHUSNUL;
         
-        // BASE URL UNDANGAN (Dibiarkan untuk konsistensi meskipun fungsi salin dihapus)
+        // BASE URL UNDANGAN (Dibiarkan untuk konsistensi)
         const BASE_INVITATION_URL = 'https://tewetech.github.io/wedding-of-chusnul-tri/';
         
         // Variabel untuk menyimpan fungsi callback hapus 
@@ -456,32 +463,32 @@
         
         // ====================================================================
         
-        // Elemen DOM yang digunakan
-        const dataForm = document.getElementById('dataForm'); // Form input data baru
-        const inputNama = document.getElementById('inputNama'); // Input nama baru
-        const tableBody = document.getElementById('tableBody'); // Body tabel untuk data tamu
-        const loadingIndicator = document.getElementById('loadingIndicator'); // Indikator loading data
-        const noDataMessage = document.getElementById('noDataMessage'); // Pesan jika tidak ada data
-        const editModal = document.getElementById('editModal'); // Modal Edit
-        const editForm = document.getElementById('editForm'); // Form edit nama
-        const editId = document.getElementById('editId'); // Input hidden ID di modal edit
-        const editNama = document.getElementById('editNama'); // Input nama di modal edit
-        const saveButton = document.getElementById('saveButton'); // Tombol Simpan Data Baru
-        const saveButtonText = document.getElementById('saveButtonText'); // Teks tombol Simpan
-        const saveSpinner = document.getElementById('saveSpinner'); // Spinner tombol Simpan
-        const inputSectionTitle = document.getElementById('inputSectionTitle'); // Judul bagian input
-        const dataSectionTitle = document.getElementById('dataSectionTitle'); // Judul bagian data
-        const tabChusnul = document.getElementById('tabChusnul'); // Tombol tab Tamu Chusnul
-        const tabTri = document.getElementById('tabTri'); // Tombol tab Tamu Tri
+        // Elemen DOM yang digunakan (Diambil dari ID HTML)
+        const dataForm = document.getElementById('dataForm'); 
+        const inputNama = document.getElementById('inputNama'); 
+        const tableBody = document.getElementById('tableBody'); 
+        const loadingIndicator = document.getElementById('loadingIndicator'); 
+        const noDataMessage = document.getElementById('noDataMessage'); 
+        const editModal = document.getElementById('editModal'); 
+        const editForm = document.getElementById('editForm'); 
+        const editId = document.getElementById('editId'); 
+        const editNama = document.getElementById('editNama'); 
+        const saveButton = document.getElementById('saveButton'); 
+        const saveButtonText = document.getElementById('saveButtonText'); 
+        const saveSpinner = document.getElementById('saveSpinner'); 
+        const inputSectionTitle = document.getElementById('inputSectionTitle'); 
+        const dataSectionTitle = document.getElementById('dataSectionTitle'); 
+        const tabChusnul = document.getElementById('tabChusnul'); 
+        const tabTri = document.getElementById('tabTri'); 
         
         // Elemen DOM untuk Notifikasi
-        const toastModal = document.getElementById('toastModal'); // Kontainer toast
-        const toastContent = document.getElementById('toastContent'); // Isi pesan toast
+        const toastModal = document.getElementById('toastModal'); 
+        const toastContent = document.getElementById('toastContent'); 
         
         // Elemen DOM untuk Modal Konfirmasi Hapus
-        const confirmModal = document.getElementById('confirmModal'); // Modal konfirmasi
-        const confirmMessage = document.getElementById('confirmMessage'); // Pesan konfirmasi
-        const confirmDeleteButton = document.getElementById('confirmDeleteButton'); // Tombol Ya, Hapus
+        const confirmModal = document.getElementById('confirmModal'); 
+        const confirmMessage = document.getElementById('confirmMessage'); 
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton'); 
 
         // Variabel global untuk menyimpan data yang sedang aktif
         let currentData = [];
@@ -498,7 +505,7 @@
         function showToast(message, type) {
             let icon = '';
             let colorClass = '';
-            // Tentukan ikon dan kelas warna berdasarkan tipe
+            
             if (type === 'success') {
                 icon = '<i class="fas fa-check-circle mr-1"></i>';
                 colorClass = 'toast-success';
@@ -513,7 +520,7 @@
             toastContent.innerHTML = `${icon}${message}`;
             toastContent.className = `toast-content ${colorClass}`;
             
-            // Tampilkan toast dengan penundaan kecil
+            // Tampilkan toast
             setTimeout(() => {
                 toastContent.classList.add('toast-show');
             }, 50); 
@@ -523,7 +530,7 @@
                 toastContent.classList.remove('toast-show');
                 setTimeout(() => {
                     toastContent.className = 'toast-content';
-                }, 300); // Tunggu transisi selesai
+                }, 300); 
             }, 4000); 
         }
 
@@ -543,45 +550,7 @@
                 saveSpinner.classList.add('hidden');
             }
         }
-
-        /**
-         * Format timestamp (Saat ini tidak digunakan, tetapi dipertahankan).
-         * @param {number|string} timestamp - Nilai timestamp.
-         * @returns {string} - Timestamp yang sudah diformat.
-         */
-        function formatTimestamp(timestamp) {
-            try {
-                const date = new Date(timestamp);
-                if (isNaN(date)) return timestamp; 
-                
-                return date.toLocaleDateString('id-ID', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-            } catch (e) {
-                return timestamp; 
-            }
-        }
         
-        // --------------------------------------------------------------------
-        // FUNGSI UNTUK MEMBUAT TEKS UNDANGAN (DIHAPUS DARI KODE ASLI)
-        // --------------------------------------------------------------------
-        
-        /*
-        function createInvitationText(namaTamu) { ... }
-        */
-
-        // --------------------------------------------------------------------
-        // FUNGSI UNTUK MENYALIN TEKS KE CLIPBOARD (DIHAPUS DARI KODE ASLI)
-        // --------------------------------------------------------------------
-        
-        /*
-        window.copyInvitation = async (namaTamu) => { ... }
-        */
-
         // --------------------------------------------------------------------
         // FUNGSI PENGATUR KATEGORI (SHEET) 
         // --------------------------------------------------------------------
@@ -591,7 +560,7 @@
          * @param {string} sheetName - Nama sheet ('Tamu Chusnul' atau 'Tamu Tri').
          */
         window.changeSheet = (sheetName) => {
-            if (currentSheet === sheetName) return; // Tidak melakukan apa-apa jika sheet sama
+            if (currentSheet === sheetName) return; 
 
             currentSheet = sheetName;
             
@@ -657,8 +626,8 @@
          * Mengambil semua data dari Google Spreadsheet untuk sheet aktif.
          */
         async function fetchData() {
-            loadingIndicator.classList.remove('hidden'); // Tampilkan indikator loading
-            tableBody.innerHTML = ''; // Kosongkan tabel
+            loadingIndicator.classList.remove('hidden'); 
+            tableBody.innerHTML = ''; 
             noDataMessage.classList.add('hidden');
 
             try {
@@ -710,7 +679,7 @@
                 const isChecked = status.toUpperCase() === 'SUDAH';
                 const checkedAttribute = isChecked ? 'checked' : '';
 
-                // Escape karakter kutipan tunggal
+                // Escape karakter kutipan tunggal untuk digunakan dalam pemanggilan fungsi inline
                 const escapedNama = nama.replace(/'/g, "\\'"); 
 
                 tr.innerHTML = `
@@ -736,7 +705,10 @@
 
                     <td class="py-1.5 px-2 whitespace-nowrap text-center">
                         <div class="flex justify-center items-center space-x-1">
-                            <button onclick="openConfirmDelete('${id}', '${escapedNama}')" class="btn-table-action bg-red-500 hover:bg-red-700" title="Hapus Data">
+                            <button onclick="openEditModal('${id}', '${escapedNama}')" class="btn-table-action btn-edit hover:bg-green-700" title="Edit Nama">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="openConfirmDelete('${id}', '${escapedNama}')" class="btn-table-action btn-remove hover:bg-red-700" title="Hapus Data">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -771,7 +743,7 @@
                 await postToGS(data);
                 
                 showToast(`Data "${nama}" berhasil disimpan di ${currentSheet}!`, 'success');
-                inputNama.value = ''; // Kosongkan input
+                inputNama.value = ''; 
                 fetchData(); // Muat ulang data tabel
 
             } catch (error) {
@@ -787,7 +759,7 @@
         // --------------------------------------------------------------------
 
         /**
-         * Membuka modal edit data. (Fungsi dipertahankan, namun tidak dipanggil dari tabel di renderTable saat ini)
+         * Membuka modal edit data.
          * @param {string} id - ID data yang akan diedit.
          * @param {string} nama - Nama tamu saat ini.
          */
@@ -826,7 +798,7 @@
 
             try {
                 const data = {
-                    action: 'UPDATE', 
+                    action: 'UPDATE', // Menggunakan aksi UPDATE yang sudah ada di Apps Script
                     id: id,
                     nama: newNama
                 };
@@ -835,7 +807,7 @@
                 
                 showToast(`Data ID ${id.substring(0, 5)}... berhasil diperbarui di ${currentSheet} menjadi "${newNama}".`, 'success');
                 closeEditModal();
-                fetchData(); 
+                fetchData(); // Muat ulang data
 
             } catch (error) {
                 showToast(`Gagal memperbarui data: ${error.message}`, 'error');
@@ -893,7 +865,7 @@
                     id: id
                 };
 
-                loadingIndicator.classList.remove('hidden'); // Tampilkan loading saat proses hapus
+                loadingIndicator.classList.remove('hidden'); 
 
                 await postToGS(data);
                 
@@ -902,12 +874,12 @@
 
             } catch (error) {
                 showToast(`Gagal menghapus data: ${error.message}`, 'error');
-                loadingIndicator.classList.add('hidden'); // Sembunyikan loading jika gagal
+                loadingIndicator.classList.add('hidden'); 
             } 
         }
         
         /**
-         * Memperbarui status undangan tamu di Google Sheet.
+         * Memperbarui status undangan tamu di Google Sheet menggunakan toggle switch.
          * @param {string} id - ID data yang akan diperbarui.
          * @param {boolean} isChecked - Status toggle (true=SUDAH, false=BELUM).
          * @param {string} nama - Nama tamu (untuk notifikasi).
@@ -926,9 +898,9 @@
                 
                 showToast(`Status undangan untuk "${nama}" berhasil diperbarui menjadi *${newStatus}*.`, 'success');
                 
+                // Update data lokal agar tabel tidak perlu di-render ulang
                 const indexToUpdate = currentData.findIndex(row => row[1] === id); 
                 if (indexToUpdate !== -1) {
-                    // Update data lokal agar tabel tidak perlu di-render ulang sepenuhnya
                     currentData[indexToUpdate][3] = newStatus;
                 }
 
