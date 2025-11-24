@@ -287,6 +287,7 @@
             color: var(--text-subtle);
             font-size: 0.8rem; 
             transition: all 0.2s ease;
+            width: 100%; /* Agar memenuhi container flex */
         }
         .tab-button:hover { 
             background-color: #046c63; 
@@ -303,6 +304,18 @@
             color: white;
         }
 
+        /* --- Gaya Tombol CSV (Baru) --- */
+        .btn-csv {
+            color: var(--text-subtle);
+            background-color: white;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+        .btn-csv:hover {
+            background-color: #e0e7ff; /* Biru muda saat hover */
+            color: var(--accent-3);
+            border-color: var(--accent-3);
+        }
 
     </style>
 </head>
@@ -314,19 +327,29 @@
             <p class="text-xs text-gray-600">List Tamu Undangan Kita • Chusnul & Tri • 2025 </p>
         </header>
 
-        <div class="flex justify-between glass-card p-0.5 shadow-sm border-b border-gray-200">
+        <div class="flex items-center space-x-2 glass-card p-0.5 shadow-sm border-b border-gray-200">
+            
             <button 
                 id="tabChusnul" 
                 onclick="changeSheet('Tamu Chusnul')"
-                class="tab-button tab-active">
+                class="tab-button tab-active flex-1">
                 Tamu Chusnul
             </button>
+
+            <button 
+                onclick="downloadCSV()"
+                class="btn-csv px-3 py-1.5 rounded-md shadow-sm text-xs font-semibold flex items-center justify-center"
+                title="Unduh Daftar Nama ke CSV">
+                <i class="fas fa-file-csv text-lg"></i>
+            </button>
+
             <button 
                 id="tabTri" 
                 onclick="changeSheet('Tamu Tri')"
-                class="tab-button">
+                class="tab-button flex-1">
                 Tamu Tri
             </button>
+
         </div>
 
         <div id="messageArea" class="hidden"></div>
@@ -446,7 +469,7 @@
         // ====================================================================
         // KONFIGURASI PENTING
         // ====================================================================
-        // URL Apps Script Anda yang sebenarnya. HARUS DIGANTI!
+        // URL Apps Script Anda yang sebenarnya.
         const GS_URL = 'https://script.google.com/macros/s/AKfycbwOdpSb9F2J6mZzEfg9Mf7tF0Xwv4AhOYi6qpwEMCaQdaec0dks23W3DBb2inzKucID2A/exec';
         
         // Nama Sheet/Kategori 
@@ -718,6 +741,59 @@
                 tableBody.appendChild(tr);
             });
         }
+
+        // --------------------------------------------------------------------
+        // FUNGSI BARU: UNDUH CSV (HANYA NAMA)
+        // --------------------------------------------------------------------
+
+        /**
+         * Mengunduh hanya kolom Nama dari data yang sedang tampil sebagai file CSV.
+         */
+        function downloadCSV() {
+            // Cek apakah ada data yang tersimpan
+            if (!currentData || currentData.length === 0) {
+                showToast('Tidak ada data untuk diunduh.', 'info');
+                return;
+            }
+
+            // Header kolom untuk CSV (Hanya Nama Tamu)
+            const headers = ['Nama Tamu'];
+            
+            // Konversi data menjadi format CSV
+            const csvRows = [];
+            csvRows.push(headers.join(',')); // Baris pertama adalah header
+
+            currentData.forEach((row) => {
+                // row pada currentData berisi: [Timestamp, ID, Nama, Status]
+                // Kita hanya mengambil Nama (index 2) sesuai permintaan
+                const nama = `"${row[2]}"`; // Tambahkan kutipan untuk menangani nama dengan koma
+
+                csvRows.push(nama);
+            });
+
+            // Gabungkan semua baris dengan karakter baris baru
+            const csvString = csvRows.join('\n');
+
+            // Buat objek Blob dari string CSV
+            const blob = new Blob([csvString], { type: 'text/csv' });
+            
+            // Buat link download sementara
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            // Tentukan nama file berdasarkan sheet yang aktif
+            const cleanSheetName = currentSheet.replace(/\s+/g, '_'); // Ganti spasi dengan underscore
+            const timestamp = new Date().toISOString().slice(0,10); // Tanggal hari ini
+            a.setAttribute('href', url);
+            a.setAttribute('download', `Daftar_Nama_${cleanSheetName}_${timestamp}.csv`);
+            
+            // Klik link secara otomatis
+            a.click();
+            
+            // Bersihkan
+            window.URL.revokeObjectURL(url);
+            showToast('Daftar nama berhasil diunduh (CSV).', 'success');
+        }
         
         // --------------------------------------------------------------------
         // HANDLER EVENT FORM SUBMISSION (SIMPAN BARU) 
@@ -921,4 +997,3 @@
     </script>
 </body>
 </html>
-
